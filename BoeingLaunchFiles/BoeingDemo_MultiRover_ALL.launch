@@ -1,0 +1,84 @@
+<launch>
+
+<!-- Rover 1 -->
+
+<!-- <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" output="screen" launch-prefix="xterm -e " >
+  <param name="~port" value="/dev/ttyACM0" />
+</node> -->
+
+<node pkg="test_lidar" type="test_lidar_node" name="SENSE1" output="screen" launch-prefix="xterm -e "  required="true">
+</node>
+
+<node pkg="demo4_detection_combiner" type="demo4_detection_combiner_node" name="DC1" output="log"  required="true">
+  <param name="~input1" value="DETECTED_OBJECT" />
+  <param name="~input2" value="VIRTUAL_DETECTION" />
+  <param name="~output1" value="FINAL_DETECTION" />
+  <param name="~mode" value="1" />
+</node>
+
+<node pkg="demo4_planner" type="demo4_planner_node" name="PLAN1" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~PLAN_DETECTION_INPUT" value="FINAL_DETECTION" />
+  <param name="~PLAN_WHEELS_OUTPUT" value="WHEELS" /> 
+</node>
+
+<node pkg="demo4_wheels_splitter" type="demo4_wheels_splitter_node" name="WS1" output="log" required="true">
+  <param name="~input1" value="WHEELS" />
+  <param name="~output1" value="PHYSICAL_WHEELS" />
+  <param name="~output2" value="VIRTUAL_WHEELS" />
+  <param name="~mode" value="2" />
+</node>
+
+<node pkg="encoder_sim" type="encoder_sim_node" name="ENCODER1" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~input1" value="VIRTUAL_WHEELS" />
+  <param name="~output1" value="PHYSICAL_TICKS" />
+</node>
+
+
+<!-- Rover 2 -->
+
+<!-- <node pkg="rosserial_python" type="serial_node.py" name="SERIAL" output="screen" launch-prefix="xterm -e " >
+  <param name="~port" value="/dev/ttyACM0" />
+</node> -->
+
+<node pkg="demo4_detection_combiner" type="demo4_detection_combiner_node" name="DC2" output="log"  required="true">
+  <param name="~input1" value="DETECTED_OBJECT2" />
+  <param name="~input2" value="VIRTUAL_DETECTION2" />
+  <param name="~output1" value="FINAL_DETECTION2" />
+  <param name="~mode" value="1" />
+</node>
+
+<node pkg="demo4_planner" type="demo4_planner_node" name="PLAN2" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~PLAN_DETECTION_INPUT" value="FINAL_DETECTION2" />
+  <param name="~PLAN_WHEELS_OUTPUT" value="WHEELS2" /> 
+</node>
+
+<node pkg="demo4_wheels_splitter" type="demo4_wheels_splitter_node" name="WS2" output="log" required="true">
+  <param name="~input1" value="WHEELS2" />
+  <param name="~output1" value="PHYSICAL_WHEELS2" />
+  <param name="~output2" value="VIRTUAL_WHEELS2" />
+  <param name="~mode" value="2" />
+</node>
+
+<node pkg="encoder_sim" type="encoder_sim_node" name="ENCODER2" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~input1" value="VIRTUAL_WHEELS2" />
+  <param name="~output1" value="PHYSICAL_TICKS2" />
+</node>
+
+
+
+<node pkg="demo4_viz" type="demo4_viz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~input1" value="TRUTH_ROVER_LOCATION" /> 
+  <param name="~input3" value="OBSTACLE" />
+  <param name="~input2" value="TRUTH_ROVER_LOCATION2" />
+</node>
+
+<node pkg="demo4_virtual_env" type="demo4_virtual_env_node" name="ENV" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~ENV_VEH1_INPUT" value="PHYSICAL_TICKS" />
+  <param name="~ENV_VEH2_INPUT" value="PHYSICAL_TICKS2" />
+  <param name="~ENV_VEH1_DETECTION_OUTPUT" value="VIRTUAL_DETECTION" />
+  <param name="~ENV_VEH2_DETECTION_OUTPUT" value="VIRTUAL_DETECTION2" /> 
+  <param name="~ENV_OBSTACLE_OUTPUT" value="OBSTACLE" />  
+  <param name="~ENV_VEH1_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION" />
+  <param name="~ENV_VEH2_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION2" />
+</node>
+</launch>

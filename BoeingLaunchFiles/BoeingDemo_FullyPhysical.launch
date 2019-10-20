@@ -1,0 +1,25 @@
+<launch>
+
+<node pkg="test_lidar" type="test_lidar_node" name="SENSE1" output="screen" launch-prefix="xterm -e "  required="true">
+</node>
+
+<node pkg="demo4_detection_combiner" type="demo4_detection_combiner_node" name="DC1" output="log"  required="true">
+  <param name="~input1" value="DETECTED_OBJECT" />
+  <param name="~input2" value="VIRTUAL_DETECTION" />
+  <param name="~output1" value="FINAL_DETECTION" />
+  <param name="~mode" value="0" />
+</node>
+
+<node pkg="demo4_planner" type="demo4_planner_node" name="PLAN1" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="~PLAN_DETECTION_INPUT" value="FINAL_DETECTION" />
+  <param name="~PLAN_WHEELS_OUTPUT" value="WHEELS" /> 
+</node>
+
+<node pkg="demo4_wheels_splitter" type="demo4_wheels_splitter_node" name="WS1" output="log" required="true">
+  <param name="~input1" value="WHEELS" />
+  <param name="~output1" value="PHYSICAL_WHEELS" />
+  <param name="~output2" value="VIRTUAL_WHEELS" />
+  <param name="~mode" value="0" />
+</node>
+
+</launch>

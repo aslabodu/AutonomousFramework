@@ -1,0 +1,36 @@
+<launch>
+
+<machine name="host" address="localhost" env-loader="/home/roverpc2/catkin_ws/devel/env.sh" default="never" >
+</machine> 
+
+<machine name="rover" address="10.254.254.193" env-loader="/home/roveraccess/catkin_ws/devel/env.sh" user="roveraccess" password="msve2019" default="never" >
+</machine> 
+
+
+
+
+<node pkg="demo5_rover_controller" type="demo5_rover_controller_node" name="CONTROL" output="screen" required="true" launch-prefix="xterm -e " machine="host">
+  <param name="~output1" value="WHEELS" />
+</node>
+
+<node pkg="demo4_wheels_splitter" type="demo4_wheels_splitter_node" name="WS" output="screen" required="true" machine="rover">
+  <param name="~input1" value="WHEELS" />
+  <param name="~output1" value="PHYSICAL_WHEELS" />
+  <param name="~output2" value="VIRTUAL_WHEELS" />
+  <param name="~mode" value="2" />
+</node>
+
+<node pkg="test_lidar" type="test_lidar_node" name="LIDAR" output="screen" required="true" launch-prefix="xterm -e " machine="host">
+  <param name="~PHYSICAL_RANGE" value="PHYSICAL_RANGE" />
+  <param name="~PHYSICAL_DETECTION" value="PHYSICAL_DETECTION" /> 
+</node>
+
+<node pkg="demo_encoder_observer" type="demo_encoder_observer_node" name="OBSERVE" output="screen" required="true" launch-prefix="xterm -e " machine="host">
+  <param name="~input1" value="PHYSICAL_TICKS" />
+</node>
+
+<node pkg="rosserial_python" type="serial_node.py" name="SERIAL" output="screen" required="false" machine="rover">
+  <param name="~port" value="/dev/ttyACM0" />
+</node>
+
+</launch>
