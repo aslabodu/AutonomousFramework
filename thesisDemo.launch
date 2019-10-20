@@ -6,7 +6,7 @@
 <!-- <machine name="rover" address="10.254.163.4" env-loader="/home/roveraccess/catkin_ws/devel/env.sh" user="roveraccess" password="msve2019" default="never" >
 </machine> -->
 
-<machine name="ntiana" address="192.168.1.166" env-loader="/home/roveraccess/catkin_ws/devel/env.sh" user="Ntiana" password="paixnidi01" default="never" >
+<machine name="ntiana" address="192.168.1.166" env-loader="/home/ntiana/catkin_ws/devel/env.sh" user="ntiana" password="paixnidi01" default="never" >
 </machine> 
 
 <machine name="roverpc2" address="192.168.1.13" env-loader="/home/roverpc2/catkin_ws/devel/env.sh" user="roverpc2" password="msve2019" default="never" >
@@ -22,11 +22,12 @@
 </node>
 
 <!-- Rover 2 (Follower, Rover) -->
-
-<!-- <node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN2" output="screen"  required="true" machine="rover">
+<!-->
+<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN2" output="screen"  required="true" machine="rover">
 </node> -->
 
 <!-- Rover 3 (Follower, Ntiana) -->
+
 <node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN3" output="screen"  required="true" machine="ntiana">
     <param name="Comm" value="1" />
     <param name="FriendlyName" value="Ntiana" />
@@ -34,13 +35,14 @@
     <param name="ModId" value="0" />
 </node>
 
-<!-- Rover 4 (Follower, RoverPC2) -->
+<!--> Rover 4 (Follower, RoverPC2) -->
+
 <node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN4" output="screen"  required="true" machine="roverpc2">
     <param name="Comm" value="1" />
     <param name="FriendlyName" value="OldLeathrum" />
     <param name="ASId" value="1" />
     <param name="ModId" value="0" />
-</node>
+</node> 
 
 <!-- Virtual Environment and Viz (Host) -->
 <node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true" machine="host">

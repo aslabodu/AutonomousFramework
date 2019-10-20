@@ -60,7 +60,7 @@ void ThesisDemoLeader::Setup(int argc, char** argv)
 
 void ThesisDemoLeader::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "Planner";
+	nodeName = "PLAN1";
 }
 
 void ThesisDemoLeader::AppInit()
