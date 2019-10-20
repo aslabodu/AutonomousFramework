@@ -123,13 +123,15 @@ void Node::Init(int argc, char** argv)
 	  (Node::Get()->*(*func)) ();
 
 	int communication = 0;
+	std::string friendlyName; 
 	ros::param::get("Comm", communication);
+	ros::param::get("FriendlyName", friendlyName);
 
 	if(communication == 1)
 	{
 		ros::param::get("ASId", _ASId);
 		ros::param::get("ModId", _moduleId);
-		Comm::GetInstance()->Init(_fcnPtr, nodeHandle ,_ASId); 
+		Comm::GetInstance()->Init(_fcnPtr, nodeHandle ,_ASId, friendlyName); 
 		// Create singular Comm instance if it hasn't been 
 		// created already
 		Comm::GetInstance()->AddMsgQueue(); 

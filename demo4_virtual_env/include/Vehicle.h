@@ -102,7 +102,7 @@ public:
 		localY = -s * globalX + c * globalY;
 	}
 
-/* 
+ 
 	inline bool Detect(std::vector<DetectedObject>& objects, float& detectX, float& detectY, float& detectSqDist, float prevMinSqDist = 10000000)
 	{
 
@@ -336,5 +336,5 @@ public:
 		}
 
 		return detected;
-	}*/
+	}
 };
