@@ -47,7 +47,7 @@
 <!-- Virtual Environment and Viz (Host) -->
 <node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true" machine="host">
   <param name="Comm" value="0" />
-  <param name="ASId" value="3" />
+  <param name="ASId" value="0" />
   <param name="ModId" value="1" />
   <param name="~input1" value="TRUTH_ROVER_LOCATION" /> 
   <param name="~input2" value="TRUTH_ROVER_LOCATION2" />
@@ -58,8 +58,8 @@
 <node pkg="thesisDemoEnv" type="thesisDemoEnv_node" name="ENV" output="screen" launch-prefix="xterm -e " required="true" machine="host">
   <param name="Comm" value="1" />
   <param name="FriendlyName" value="VirtualEnv" />
-  <param name="ASId" value="3" />
-  <param name="ModId" value="0" />
+  <param name="ASId" value="0" />
+  <param name="ModId" value="2" />
   <param name="~ENV_VEH1_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION" />
   <param name="~ENV_VEH2_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION2" />
   <param name="~ENV_VEH3_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION3" />

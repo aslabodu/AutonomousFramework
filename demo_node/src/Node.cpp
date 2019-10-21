@@ -132,7 +132,8 @@ void Node::Init(int argc, char** argv)
 	{
 		ros::param::get("/" +_nodeName + "/ASId", _ASId);
 		ros::param::get("/" +_nodeName + "/ModId", _moduleId);
-		Comm::GetInstance()->Init(_fcnPtr, nodeHandle ,_ASId, friendlyName); 
+		if(Comm::GetInstance()->checkCommInstance() == false)
+			Comm::GetInstance()->Init(_fcnPtr, nodeHandle ,_ASId, friendlyName); 
 		// Create singular Comm instance if it hasn't been 
 		// created already
 		Comm::GetInstance()->AddMsgQueue(); 
@@ -241,12 +242,12 @@ int Node::SendMessage(std::string dest, Message * msg)
 
 	if(dest == "All")
 	{
-		return Comm::GetInstance()->SendBd(msg);
+		return Comm::GetInstance()->SendBd(_ASId, _moduleId, msg);
 		std::cout << "Done sending Bd at CommInt" << std::endl; 
 	}
 	else
 	{
-		return Comm::GetInstance()->SendPtoP(msg, dest);
+		return Comm::GetInstance()->SendPtoP(_ASId, _moduleId,msg, dest, _moduleId);
 		std::cout << "Done Sending PtP at CommInt" << std::endl; 
 	}
 	return 0;

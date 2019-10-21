@@ -7,24 +7,6 @@ Node* CreateApplicationNode()
 	return new ThesisDemoFollower();        // Make sure to change this to correct Node class type
 }
 
-
-
-Message * getCorrectMsg(int typeId)
-{
-    CommandMessage * msg1; 
-	WheelsMessage * msg2;
-	switch(typeId)
-	{
-		case 0:
-			msg1 = new CommandMessage(); 
-			return msg1;
-			break;
-		case 1:
-			msg2 = new WheelsMessage(); 
-			return msg2;
-			break;
-	}
-}
 // ------------------------------------------
 
 void termination_handler (int signum)
@@ -44,9 +26,6 @@ void ThesisDemoFollower::Setup(int argc, char** argv)
     _wheels = new WheelsMessage(); 
 
     // Set function pointer to messages // 
-    Message * (*fcnPtr)(int);
-	fcnPtr = getCorrectMsg;
-    setMsgFcnPtr(fcnPtr);
 
     //Publish(output1, &_wheels);
     //Publish(output2, &_command);
@@ -74,8 +53,8 @@ void ThesisDemoFollower::AppInit()
 
 void ThesisDemoFollower::Process()
 {
-    if (signal (SIGINT, termination_handler) == SIG_IGN)
-    	signal (SIGINT, SIG_IGN);	
+    //if (signal (SIGINT, termination_handler) == SIG_IGN)
+   // 	signal (SIGINT, SIG_IGN);	
 
     if(CheckForMessage(0) == true)
     {

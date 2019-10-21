@@ -1,4 +1,4 @@
-#include "ThesisDemoLeader.h"
+  #include "ThesisDemoLeader.h"
 
 // ------------------------------------------
 // IMPORTANT!! - Make sure there is a definition for CreateApplicationNode()
@@ -7,24 +7,6 @@ Node* CreateApplicationNode()
 	return new ThesisDemoLeader();        // Make sure to change this to correct Node class type
 }
 
-
-
-Message * getCorrectMsg(int typeId)
-{
-    CommandMessage * msg1; 
-	WheelsMessage * msg2;
-	switch(typeId)
-	{
-		case 0:
-			msg1 = new CommandMessage(); 
-			return msg1;
-			break;
-		case 1:
-			msg2 = new WheelsMessage(); 
-			return msg2;
-			break;
-	}
-}
 // ------------------------------------------
 
 void termination_handler (int signum)
@@ -42,11 +24,6 @@ void ThesisDemoLeader::Setup(int argc, char** argv)
     // Allocate Message Memory //
     _command = new CommandMessage(); 
     _wheels = new WheelsMessage(); 
-
-    // Set function pointer to messages // 
-    Message * (*fcnPtr)(int);
-	fcnPtr = getCorrectMsg;
-    setMsgFcnPtr(fcnPtr);
 
     //Publish(output1, &_wheels);
     //Publish(output2, &_command);

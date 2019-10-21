@@ -49,7 +49,7 @@ void Environment::Setup(int argc, char** argv)
 
 void Environment::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "Environment";
+	nodeName = "ENV";
 }
 
 void Environment::AppInit()

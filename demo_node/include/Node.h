@@ -48,6 +48,7 @@ public:
 	void Init(int argc, char** argv);
 	void Loop();
 	void Terminate();
+
 	void setMsgFcnPtr(Message * (*fcnPtr)(int));
 
 	

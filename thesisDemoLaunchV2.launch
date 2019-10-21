@@ -1,0 +1,31 @@
+<launch>
+
+<node pkg="thesisDemoLeader" type="thesisDemoLeader_node" name="PLAN1" output="screen" required="true">
+    <param name="Comm" value="1" />
+    <param name="FriendlyName" value="Leathrum" />
+    <param name="ASId" value="0" />
+    <param name="ModId" value="0" />
+</node>
+
+<!-- Virtual Environment and Viz (Host) -->
+<node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="Comm" value="0" />
+  <param name="ASId" value="3" />
+  <param name="ModId" value="1" />
+  <param name="~input1" value="TRUTH_ROVER_LOCATION" /> 
+  <param name="~input2" value="TRUTH_ROVER_LOCATION2" />
+  <param name="~input3" value="TRUTH_ROVER_LOCATION3" />
+<!--  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> -->
+</node>
+
+<node pkg="thesisDemoEnv" type="thesisDemoEnv_node" name="ENV" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="Comm" value="1" />
+  <param name="FriendlyName" value="VirtualEnv" />
+  <param name="ASId" value="3" />
+  <param name="ModId" value="0" />
+  <param name="~ENV_VEH1_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION" />
+  <param name="~ENV_VEH2_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION2" />
+  <param name="~ENV_VEH3_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION3" />
+  <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
+</node>
+</launch>

@@ -61,7 +61,7 @@ void PlotApp::Setup(int argc, char** argv)
 
 void PlotApp::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "PLOT_OBJECTS_QT";
+	nodeName = "VIZ";
 }
 
 void PlotApp::Init()
