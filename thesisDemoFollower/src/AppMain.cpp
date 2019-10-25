@@ -26,7 +26,7 @@ int main(int argc, char** argv)
 	fcnPtr = getCorrectMsg;   
 
 	Node::Get()->setMsgFcnPtr(fcnPtr);
-    Node::Get()->Init(argc, argv);
+    	Node::Get()->Init(argc, argv);
 	Node::Get()->Loop();
 
 	return 0;

@@ -5,9 +5,9 @@
 #include <signal.h>
 #include <unistd.h>
 
-const char* envParameterFile = "../catkin_ws/src/demo4_virtual_env/config/parameters.xml";
+const char* envParameterFile = "../catkin_ws/src/thesisDemoEnv/config/parameters.xml";
 
-const char* parameterFile = "../catkin_ws/src/demo4_viz/config/parameters.xml";
+const char* parameterFile = "../catkin_ws/src/thesisDemoViz/config/parameters.xml";
 
 // ------------------------------------------
 Node* CreateApplicationNode()
@@ -39,6 +39,7 @@ void PlotApp::Setup(int argc, char** argv)
 	Subscribe(input2, &vehicle_location2);		
 	RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
 
+	std::cout << "topic name for input2 is " << input2 << std::endl; 
 	input3 = FindTopicName("input3");
 	Subscribe(input3, &vehicle_location3);		
 	RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation3));
@@ -188,6 +189,15 @@ bool PlotApp::LoadEnv(const char* filename)
 		// }
 
 		if(elementName=="vehicle1")
+		{
+			pElem->QueryFloatAttribute("MR",&max_range);
+			pElem->QueryFloatAttribute("FOV",&field_of_view);			
+
+			worker.setMaxRange(max_range);
+			worker.setFieldOfView(field_of_view);
+		}
+
+		if(elementName=="vehicle2")
 		{
 			pElem->QueryFloatAttribute("MR",&max_range);
 			pElem->QueryFloatAttribute("FOV",&field_of_view);			

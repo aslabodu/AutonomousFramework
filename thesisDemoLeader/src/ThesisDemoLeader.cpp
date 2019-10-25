@@ -57,13 +57,20 @@ void ThesisDemoLeader::Process()
     if (signal (SIGINT, termination_handler) == SIG_IGN)
     	signal (SIGINT, SIG_IGN);	
 
+    _wheels->SetRightWheel(20);
+    _wheels->SetLeftWheel(20);
+    _command->SetCommand(0);
+    SendMessage("VirtualEnv", _wheels);
+    SendMessage("OldLeathrum", _command);
+    /* 
     if(timer < 100)
     {
         // go straight
-        _command->SetCommand(0);
         _wheels->SetRightWheel(1);
         _wheels->SetLeftWheel(1);
-        SendMessage("All", _command);
+        std::cout << "set my wheels " << std::endl; 
+        SendMessage("Ntiana", _command);
+        SendMessage("OldLeathrum", _command);
         SendMessage("VirtualEnv", _wheels);
         timer++;
     }
@@ -72,11 +79,12 @@ void ThesisDemoLeader::Process()
         _command->SetCommand(1);
         _wheels->SetRightWheel(1);
         _wheels->SetLeftWheel(1);
-        SendMessage("All", _command);
+        SendMessage("Ntiana", _command);
+        SendMessage("OldLeathrum", _command);
         SendMessage("VirtualEnv", _wheels);
         if(timer == 50)
             timer = 0; 
-    }
+    }*/
 
     
 }

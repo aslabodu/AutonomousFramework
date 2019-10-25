@@ -25,11 +25,11 @@ void termination_handler (int signum)
 
 void Environment::Setup(int argc, char** argv)
 {
-	Publish(FindTopicName("ENV_VEH1_LOCATION_OUTPUT"), &_veh1Loc);
+	//Publish(FindTopicName("ENV_VEH1_LOCATION_OUTPUT"), &_veh1Loc);
 
 	//Publish(FindTopicName("ENV_VEH2_LOCATION_OUTPUT"), &_veh2Loc);
 
-   // Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
+    Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
 
 //	Publish(FindTopicName("ENV_VEH4_LOCATION_OUTPUT"), &_veh4Loc);
 
@@ -39,7 +39,7 @@ void Environment::Setup(int argc, char** argv)
 
 void Environment::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "ENV";
+	nodeName = "ENV3";
 }
 
 void Environment::AppInit()
@@ -106,7 +106,7 @@ bool Environment::Load(const char* filename)
 		// 	pElem->QueryFloatAttribute("fieldOfView",&field_of_view);
 		// 	pElem->QueryFloatAttribute("update",&update_interval);
 		// }
-
+/* 
 		if(elementName=="vehicle1")
 		{
 			float x,y,theta;
@@ -126,7 +126,7 @@ bool Environment::Load(const char* filename)
 		  _vehicle1 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle1.SetLocation(x,y,theta);	
 		}
-/* 
+
 		if(elementName=="vehicle2")
 		{
 			float x,y,theta;
@@ -146,8 +146,8 @@ bool Environment::Load(const char* filename)
 
 		  _vehicle2 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle2.SetLocation(x,y,theta);	
-		}
-
+		}*/
+ 
         if(elementName=="vehicle3")
 		{
 		    float x,y,theta;
@@ -167,7 +167,7 @@ bool Environment::Load(const char* filename)
 		  _vehicle3 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle3.SetLocation(x,y,theta);	
 		}
-
+/* 
 		if(elementName=="vehicle4")
 		{
 			float x,y,theta;
@@ -211,13 +211,13 @@ void Environment::Process()
 
         if(GetNextMsgType(0) == 1)
         {   
-			_veh1Wheels =  dynamic_cast<WheelsMessage *>(GetMessage(0)->Clone());
-            _vehicle1.UpdateLocation(_veh1Wheels->GetLeftWheel(), _veh1Wheels->GetRightWheel());
-            _vehicle1.GetLocation(x,y,theta);
-            _veh1Loc.SetX(x);
-            _veh1Loc.SetY(y);
-            _veh1Loc.SetHeading(theta);
-            _veh1Loc.SetFlagged(true);
+			_veh3Wheels =  dynamic_cast<WheelsMessage *>(GetMessage(0)->Clone());
+            _vehicle3.UpdateLocation(_veh3Wheels->GetLeftWheel(), _veh3Wheels->GetRightWheel());
+            _vehicle3.GetLocation(x,y,theta);
+            _veh3Loc.SetX(x);
+            _veh3Loc.SetY(y);
+            _veh3Loc.SetHeading(theta);
+            _veh3Loc.SetFlagged(true);
 		}
 	}
 }

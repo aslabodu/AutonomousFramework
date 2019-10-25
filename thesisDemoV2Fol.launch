@@ -1,0 +1,18 @@
+<launch>
+
+<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN4" output="screen" required="true">
+    <param name="Comm" value="1" />
+    <param name="FriendlyName" value="OldLeathrum" />
+    <param name="ASId" value="1" />
+    <param name="ModId" value="0" />
+</node>
+
+<node pkg="thesisDemoEnv2" type="thesisDemoEnv2_node" name="ENV2" output="screen" launch-prefix="xterm -e " required="true">
+  <param name="Comm" value="1" />
+  <param name="FriendlyName" value="VirtualEnv2" />
+  <param name="ASId" value="4" />
+  <param name="ModId" value="0" />
+  <param name="~ENV_VEH2_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION2" />
+  <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
+</node>
+</launch>

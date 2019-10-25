@@ -9,12 +9,14 @@ WheelsMessage::WheelsMessage()
 
 void WheelsMessage::SetLeftWheel(int leftWheel)
 {
-    _leftWheel = leftWheel; 
+    _leftWheel = leftWheel;
+	//std::cout << "left wheel now " << _leftWheel << std::endl;  
 }
     
 void WheelsMessage::SetRightWheel(int rightWheel)
 {
     _rightWheel = rightWheel;
+	//std::cout << "right wheel now " << _rightWheel << std::endl; 
 }
 
 int WheelsMessage::GetLeftWheel()
@@ -29,21 +31,25 @@ int WheelsMessage::GetRightWheel()
 
 void WheelsMessage::Serialize(int* dataBuf)
 {
-	int index = 0;
+	int index = Message::_headerSize;
 	int * dataRef;
 
 	dataRef = (int*)&_leftWheel;
-	for (int i = 0; i < sizeof(_leftWheel) / sizeof(int); i++)
+	for (int i = 0; i < (sizeof(_leftWheel) / sizeof(int)); i++)
 		dataBuf[index++] = dataRef[i];
 
 	dataRef = (int*)&_rightWheel;
-	for (int i = 0; i < sizeof(_rightWheel) / sizeof(int); i++)
+	for (int i = 0; i < (sizeof(_rightWheel) / sizeof(int)); i++)
 		dataBuf[index++] = dataRef[i];
+
+	/*for (int i = 0; i < GetSize() + Message::_headerSize; i++) {
+		std::cout << dataBuf[i] << " "; }
+	std::cout << std::endl << std::flush;*/
 }
 
 void WheelsMessage::DeSerialize(int * dataBuf)
 {
-	int index = 0;
+	int index = Message::_headerSize;
 	int *dataRef;
 
 	dataRef = (int*)&_leftWheel;

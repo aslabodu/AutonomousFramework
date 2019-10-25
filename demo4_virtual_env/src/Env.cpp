@@ -67,7 +67,7 @@ void Environment::AppInit()
     	Node::Get()->Terminate();
     }
 
-
+	std::cout << "Should hav loaded vehicles " << std::endl; 
 	//recv_location = false;
     ResetClock();
 }

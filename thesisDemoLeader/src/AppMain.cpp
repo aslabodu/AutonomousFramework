@@ -22,6 +22,7 @@ Message * getCorrectMsg(int typeId)
 
 int main(int argc, char** argv)
 { 
+std::cout << "YOOHOO" << std::endl; 
 	Message * (*fcnPtr)(int);
 	fcnPtr = getCorrectMsg;   
 
