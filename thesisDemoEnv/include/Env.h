@@ -15,9 +15,9 @@ protected:
     void Setup(int argc, char** argv);
 	void SetNodeName(int argc, char** argv, std::string& nodeName);
 private:
-    Vehicle _vehicle1; //, _vehicle2, _vehicle3, _vehicle4; 
-    WheelsMessage * _veh1Wheels; //, * _veh2Wheels, * _veh3Wheels, * _veh4Wheels; 
-    LocationObject _veh1Loc; //, _veh2Loc, _veh3Loc, _veh4Loc; 
+    Vehicle _vehicle1, _vehicle2, _vehicle3, _vehicle4; 
+    WheelsMessage * _veh1Wheels, * _veh2Wheels, * _veh3Wheels, * _veh4Wheels; 
+    LocationObject _veh1Loc, _veh2Loc, _veh3Loc, _veh4Loc; 
 
     std::vector<Line> lines; 
 

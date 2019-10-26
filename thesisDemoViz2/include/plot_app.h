@@ -37,9 +37,9 @@ public:
 class PlotApp : public Node
 {
 private:
-	LocationObject vehicle_location,vehicle_location2, vehicle_location3, vehicle_location4;	
+	LocationObject vehicle_location2; //,vehicle_location2, vehicle_location3, vehicle_location4;	
 
-	LocationObject obstacle; 
+	//LocationObject obstacle; 
 
 	QtWorkerObj worker;
 	std::future<void> qt_worker_future;	
@@ -53,11 +53,11 @@ protected:
 	void Init();
 	bool Load(const char* filename);
 	bool LoadEnv(const char* filename);
-	void OnReceiveLocation();
+//	void OnReceiveLocation();
 	void OnReceiveLocation2();
-	void OnReceiveLocation3();
-	void OnReceiveLocation4();
-	void OnReceiveObstacle();
+//	void OnReceiveLocation3();
+//	void OnReceiveLocation4();
+//	void OnReceiveObstacle();
 	void Process();
 };
 

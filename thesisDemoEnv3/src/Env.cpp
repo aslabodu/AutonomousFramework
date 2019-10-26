@@ -203,7 +203,6 @@ void Environment::Process()
 
   ///  if (ElapsedTime() >= terminationTime) // termination when time elapsed
   //  	signal (SIGINT, SIG_IGN);
-	
     if(CheckForMessage(0) == true)
     {
         float x,y,theta;

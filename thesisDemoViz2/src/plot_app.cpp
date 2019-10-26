@@ -32,18 +32,17 @@ void PlotApp::Setup(int argc, char** argv)
 	std::string input5; 
 
 
-
-	input1 = FindTopicName("input1");
-	Subscribe(input1, &vehicle_location);		
-	RegisterInputFunction(input1,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation));
-	
 	input2 = FindTopicName("input2");
-	//Subscribe(input2, &vehicle_location2);		
-	//RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
+	Subscribe(input2, &vehicle_location2);		
+	RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
+
+	/*input1 = FindTopicName("input1");
+	Subscribe(input1, &vehicle_location);		
+	RegisterInputFunction(input1,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation)); 
 
 	input3 = FindTopicName("input3");
-	//Subscribe(input3, &vehicle_location3);		
-	//RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation3));
+	Subscribe(input3, &vehicle_location3);		
+	RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation3)); */
 
 
 /* 	input4 = FindTopicName("input4");
@@ -222,12 +221,12 @@ bool PlotApp::LoadEnv(const char* filename)
 }
 
 
-void PlotApp::OnReceiveLocation()
+/* void PlotApp::OnReceiveLocation()
 {
 	printf("Received Location:  X:%f| Y:%f| Theta:%f \n", vehicle_location.GetX(), vehicle_location.GetY(), vehicle_location.GetHeading());
 	
 	worker.drawRover(vehicle_location.GetX(), vehicle_location.GetY(), vehicle_location.GetHeading(),1);
-}
+} */
 
 void PlotApp::OnReceiveLocation2(){
 
@@ -236,6 +235,7 @@ void PlotApp::OnReceiveLocation2(){
 	worker.drawRover(vehicle_location2.GetX(), vehicle_location2.GetY(), vehicle_location2.GetHeading(),2);	
 }
 
+/* 
 void PlotApp::OnReceiveLocation3()
 {
 	printf("Received Location 3:  X:%f| Y:%f| Theta:%f \n", vehicle_location3.GetX(), vehicle_location3.GetY(), vehicle_location3.GetHeading());
@@ -255,7 +255,7 @@ void PlotApp::OnReceiveObstacle()
 	// printf("Received Obstacle:  X:%f| Y:%f\n", obstacle.GetX(), obstacle.GetY());
 	
 	worker.drawObstacle(obstacle.GetX(), obstacle.GetY());	
-}
+} */
 
 void PlotApp::Process()
 {

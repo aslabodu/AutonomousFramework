@@ -58,8 +58,8 @@ void ThesisDemoLeader::Process()
     if (signal (SIGINT, termination_handler) == SIG_IGN)
     	signal (SIGINT, SIG_IGN);	
 
-    _wheels->SetRightWheel(0);
-    _wheels->SetLeftWheel(0);
+    _wheels->SetRightWheel(20);
+    _wheels->SetLeftWheel(20);
    // _command->SetCommand(0);
     SendMessage("VirtualEnv", _wheels);
    // SendMessage("OldLeathrum", _command);

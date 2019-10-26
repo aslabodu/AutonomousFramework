@@ -26,15 +26,16 @@
   <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
 </node>
 <!-- Viz (Host) -->
-<node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true" machine="host">
+<!-->
+<node pkg="testASSubs" type="testASSubs_node" name="test" output="screen" launch-prefix="xterm -e " required="true" machine="host">
   <param name="Comm" value="0" />
   <param name="ASId" value="0" />
   <param name="ModId" value="1" />
   <param name="~input1" value="TRUTH_ROVER_LOCATION" /> 
   <param name="~input2" value="TRUTH_ROVER_LOCATION2" />
   <param name="~input3" value="TRUTH_ROVER_LOCATION3" />
-<!--  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> -->
-</node>
+  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> 
+</node> -->
 </launch>
 
 

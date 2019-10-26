@@ -1,4 +1,4 @@
-#include "Env.h"
+#include "testSub.h"
 #include "tinyxml2.h"
 
 #include "Clock.h"
@@ -14,7 +14,7 @@ const char* parameterFile = "../catkin_ws/src/thesisDemoEnv/config/parameters.xm
 // IMPORTANT!! - Make sure there is a definition for CreateApplicationNode()
 Node* CreateApplicationNode()
 {
-	return new Environment();
+	return new testSub();
 }
 // ------------------------------------------
 
@@ -23,26 +23,41 @@ void termination_handler (int signum)
   Node::Get()->Terminate();
 }
 
-void Environment::Setup(int argc, char** argv)
+void testSub::Setup(int argc, char** argv)
 {
+    std::string input1, input2, input3;
+
+    input2 = FindTopicName("input2");
+	Subscribe(input2, &_veh2Loc);		
+	RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&testSub::OnReceiveLocation2));
+
+	input1 = FindTopicName("input1");
+	Subscribe(input1, &_veh1Loc);		
+	RegisterInputFunction(input1,static_cast<NodeFuncPtr>(&testSub::OnReceiveLocation));
+
+	input3 = FindTopicName("input3");
+	Subscribe(input3, &_veh3Loc);		
+	RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&testSub::OnReceiveLocation3));
+
+    /* 
 	Publish(FindTopicName("ENV_VEH1_LOCATION_OUTPUT"), &_veh1Loc);
 
-//	Publish(FindTopicName("ENV_VEH2_LOCATION_OUTPUT"), &_veh2Loc);
+	Publish(FindTopicName("ENV_VEH2_LOCATION_OUTPUT"), &_veh2Loc);
 
-//    Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
+    Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
 
-//	Publish(FindTopicName("ENV_VEH4_LOCATION_OUTPUT"), &_veh4Loc); */
+	Publish(FindTopicName("ENV_VEH4_LOCATION_OUTPUT"), &_veh4Loc); */
 
-	RegisterInitFunction(static_cast<NodeFuncPtr>(&Environment::AppInit));
-	RegisterCoreFunction(static_cast<NodeFuncPtr>(&Environment::Process));
+	RegisterInitFunction(static_cast<NodeFuncPtr>(&testSub::AppInit));
+	RegisterCoreFunction(static_cast<NodeFuncPtr>(&testSub::Process));
 }
 
-void Environment::SetNodeName(int argc, char** argv, std::string& nodeName)
+void testSub::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "ENV";
+	nodeName = "TESTSUB";
 }
 
-void Environment::AppInit()
+void testSub::AppInit()
 {
 	//std::cout << "init in environment " << std::endl; 
 	sleep(3);
@@ -59,7 +74,7 @@ void Environment::AppInit()
     ResetClock();
 }
 
-bool Environment::Load(const char* filename)
+bool testSub::Load(const char* filename)
 {
   char wd[256];
   getcwd(wd, 256);
@@ -126,7 +141,7 @@ bool Environment::Load(const char* filename)
 		  _vehicle1 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle1.SetLocation(x,y,theta);	
 		}
-/* 
+ 
 		if(elementName=="vehicle2")
 		{
 			float x,y,theta;
@@ -186,13 +201,13 @@ bool Environment::Load(const char* filename)
 
 		  _vehicle4 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle4.SetLocation(x,y,theta);	
-		}*/
+		}
     }
 
   return(true);	
 }
 
-void Environment::Process()
+void testSub::Process()
 {
     // ---- Termination Signal ------ //
   	if (signal (SIGINT, termination_handler) == SIG_IGN)
@@ -201,59 +216,25 @@ void Environment::Process()
     	signal (SIGINT, SIG_IGN);
 	  }
 
-  ///  if (ElapsedTime() >= terminationTime) // termination when time elapsed
-  //  	signal (SIGINT, SIG_IGN);
-	
-    if(CheckForMessage(0) == true)
-    {
-	//	std::cout << "GOt message " << std::endl; 
-        float x,y,theta;
-		int source; 
-        if(GetNextMsgType(0) == 1)
-        {   
-		//	WheelsMessage * newmsg =  dynamic_cast<WheelsMessage *>(GetMessage(0)->Clone());
-		//	source = std::get<0>(newmsg->GetSourceId());
+}
 
-		//	if(source == 0)
-		//	{
-				_veh1Wheels =  dynamic_cast<WheelsMessage *>(GetMessage(0)->Clone());
-				_vehicle1.UpdateLocation(_veh1Wheels->GetLeftWheel(), _veh1Wheels->GetRightWheel());
-				_vehicle1.GetLocation(x,y,theta);
-				_veh1Loc.SetX(x);
-				_veh1Loc.SetY(y);
-				_veh1Loc.SetHeading(theta);
-				_veh1Loc.SetFlagged(true);
-		/* 	}
-			else if(source == 1)
-			{
-				_veh2Wheels =  dynamic_cast<WheelsMessage *>(newmsg);
-				_vehicle2.UpdateLocation(_veh2Wheels->GetLeftWheel(), _veh2Wheels->GetRightWheel());
-				_vehicle2.GetLocation(x,y,theta);
-				_veh2Loc.SetX(x);
-				_veh2Loc.SetY(y);
-				_veh2Loc.SetHeading(theta);
-				_veh2Loc.SetFlagged(true);
-			}
-			else if(source == 2)
-			{
-				_veh3Wheels =  dynamic_cast<WheelsMessage *>(newmsg);
-				_vehicle3.UpdateLocation(_veh3Wheels->GetLeftWheel(), _veh3Wheels->GetRightWheel());
-				_vehicle3.GetLocation(x,y,theta);
-				_veh3Loc.SetX(x);
-				_veh3Loc.SetY(y);
-				_veh3Loc.SetHeading(theta);
-				_veh3Loc.SetFlagged(true);
-			}
-			else if(source == 3)
-			{
-				_veh4Wheels =  dynamic_cast<WheelsMessage *>(newmsg);
-				_vehicle4.UpdateLocation(_veh4Wheels->GetLeftWheel(), _veh4Wheels->GetRightWheel());
-				_vehicle4.GetLocation(x,y,theta);
-				_veh4Loc.SetX(x);
-				_veh4Loc.SetY(y);
-				_veh4Loc.SetHeading(theta);
-				_veh4Loc.SetFlagged(true);
-			} */
-		}
-	}
+void testSub::OnReceiveLocation()
+{
+	printf("Received Location:  X:%f| Y:%f| Theta:%f \n", _veh1Loc.GetX(), _veh1Loc.GetY(), _veh1Loc.GetHeading());
+	
+//worker.drawRover(veh1Loc.GetX(), veh1Loc.GetY(), veh1Loc.GetHeading(),1);
+}
+
+void testSub::OnReceiveLocation2(){
+
+	printf("Received Location 2:  X:%f| Y:%f| Theta:%f \n", _veh2Loc.GetX(), _veh2Loc.GetY(), _veh2Loc.GetHeading());
+	
+//	worker.drawRover(veh2Loc.GetX(), veh2Loc.GetY(), veh2Loc.GetHeading(),2);	
+}
+
+void testSub::OnReceiveLocation3()
+{
+	printf("Received Location 3:  X:%f| Y:%f| Theta:%f \n", _veh3Loc.GetX(), _veh3Loc.GetY(), _veh3Loc.GetHeading());
+	
+//	worker.drawRover(veh3Loc.GetX(), veh3Loc.GetY(), veh3Loc.GetHeading(),3);
 }

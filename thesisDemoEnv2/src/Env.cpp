@@ -107,7 +107,7 @@ bool Environment::Load(const char* filename)
 		// 	pElem->QueryFloatAttribute("update",&update_interval);
 		// }
 
-		/* 
+		 
 
 		if(elementName=="vehicle1")
 		{
@@ -128,7 +128,7 @@ bool Environment::Load(const char* filename)
 		  _vehicle1 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle1.SetLocation(x,y,theta);	
 		}
-*/
+
 		if(elementName=="vehicle2")
 		{
 			float x,y,theta;
@@ -149,7 +149,7 @@ bool Environment::Load(const char* filename)
 		  _vehicle2 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle2.SetLocation(x,y,theta);	
 		}
-/* 
+ 
         if(elementName=="vehicle3")
 		{
 		    float x,y,theta;
@@ -188,7 +188,7 @@ bool Environment::Load(const char* filename)
 
 		  _vehicle4 = Vehicle(halfWidth, leftWheelConstant, rightWheelConstant, field_of_view, max_range, wheelRadius, wheelBase);
 		  _vehicle4.SetLocation(x,y,theta);	
-		}*/
+		}
     }
 
   return(true);	
@@ -205,7 +205,6 @@ void Environment::Process()
 
   ///  if (ElapsedTime() >= terminationTime) // termination when time elapsed
   //  	signal (SIGINT, SIG_IGN);
-	
     if(CheckForMessage(0) == true)
     {
         float x,y,theta;
