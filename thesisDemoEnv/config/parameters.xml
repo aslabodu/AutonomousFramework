@@ -6,9 +6,9 @@
 	<!-- <vehicle1 x="-200.0" y="0.0" theta="0.0" HW="29.0" WB = "0.40" WR = "0.125" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle1> -->
 	<vehicle1 x="-200.0" y="0.0" theta="0.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle1>
 	<vehicle2 x="200.0" y="0.0" theta="90.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle2>
-	<vehicle3 x="200.0" y="60.00" theta="180.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle3>
-<!-- <vehicle4 x="-200.0" y="60.00" theta="275.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle4> -->
-	<!-- <vehicle2 x="275.0" y="0.0" theta="0.0" HW="50.0" LWC="0.55" RWC="0.55" FOV="30.0" MR="20.0"></vehicle2> -->
+	<vehicle3 x="200.0" y="60.00" theta="180.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle3> 
+<!-- <vehicle4 x="-200.0" y="60.00" theta="275.0" HW="29.0" WB = "300.0" WR = "0.075" LWC="0.0055" RWC="0.0055" FOV="30.0" MR="20.0"></vehicle4> 
+	 <vehicle2 x="275.0" y="0.0" theta="0.0" HW="50.0" LWC="0.55" RWC="0.55" FOV="30.0" MR="20.0"></vehicle2> -->
 	<!--<random number="10" minX="-250.0" maxX="250.0" minY="-100.0" maxY="100.0"></random>-->
 <!--   <line a="0.0" b="1.0" c="100" minX="-100.0" maxX="100.0" minY="-120.0" maxY="120.0"></line>
   <line a="0.0" b="1.0" c="-100" minX="-100.0" maxX="100.0" minY="-120.0" maxY="120.0"></line>

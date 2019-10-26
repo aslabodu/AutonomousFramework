@@ -29,7 +29,7 @@ void Environment::Setup(int argc, char** argv)
 
 	//Publish(FindTopicName("ENV_VEH2_LOCATION_OUTPUT"), &_veh2Loc);
 
-   // Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
+    //Publish(FindTopicName("ENV_VEH3_LOCATION_OUTPUT"), &_veh3Loc);
 
 //	Publish(FindTopicName("ENV_VEH4_LOCATION_OUTPUT"), &_veh4Loc);
 

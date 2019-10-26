@@ -208,7 +208,6 @@ void Environment::Process()
 	
     if(CheckForMessage(0) == true)
     {
-	//	std::cout << "GOt message " << std::endl; 
         float x,y,theta;
 
         if(GetNextMsgType(0) == 1)

@@ -31,18 +31,19 @@ void PlotApp::Setup(int argc, char** argv)
 	std::string input4;
 	std::string input5; 
 
+
+	input2 = FindTopicName("input2");
+	//Subscribe(input2, &vehicle_location2);		
+	RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
+
 	input1 = FindTopicName("input1");
 	Subscribe(input1, &vehicle_location);		
 	RegisterInputFunction(input1,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation));
 
-	input2 = FindTopicName("input2");
-	Subscribe(input2, &vehicle_location2);		
-	RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
-
-	std::cout << "topic name for input2 is " << input2 << std::endl; 
 	input3 = FindTopicName("input3");
 	Subscribe(input3, &vehicle_location3);		
 	RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation3));
+
 
 /* 	input4 = FindTopicName("input4");
 	Subscribe(input4, &vehicle_location4);		
@@ -146,7 +147,7 @@ bool PlotApp::LoadEnv(const char* filename)
 		// }
 
 
-		if(elementName=="line")
+		/* if(elementName=="line")
 		{
 			float a,b,c;
 			pElem->QueryFloatAttribute("a",&a);
@@ -178,7 +179,7 @@ bool PlotApp::LoadEnv(const char* filename)
 			worker.drawLine(x0,y0,x1,y1);
 		}
 
-
+*/
 		// if(elementName=="environment")
 		// {
 		// 	pElem->QueryFloatAttribute("maxRange",&max_range);
@@ -198,6 +199,15 @@ bool PlotApp::LoadEnv(const char* filename)
 		}
 
 		if(elementName=="vehicle2")
+		{
+			pElem->QueryFloatAttribute("MR",&max_range);
+			pElem->QueryFloatAttribute("FOV",&field_of_view);			
+
+			worker.setMaxRange(max_range);
+			worker.setFieldOfView(field_of_view);
+		}
+
+		if(elementName=="vehicle3")
 		{
 			pElem->QueryFloatAttribute("MR",&max_range);
 			pElem->QueryFloatAttribute("FOV",&field_of_view);			

@@ -1,5 +1,4 @@
 <launch>
-
 <machine name="host" address="localhost" env-loader="/home/aslabpc3/catkin_ws/devel/env.sh" default="never" >
 </machine> 
 
@@ -11,50 +10,6 @@
 
 <machine name="roverpc2" address="192.168.1.13" env-loader="/home/roverpc2/catkin_ws/devel/env.sh" user="roverpc2" password="msve2019" default="never" >
 </machine> 
-
-<!-- Rover 1 (Leader, Host) -->
-
-<node pkg="thesisDemoLeader" type="thesisDemoLeader_node" name="PLAN1" output="screen" required="true" machine="host">
-    <param name="Comm" value="1" />
-    <param name="FriendlyName" value="Leathrum" />
-    <param name="ASId" value="0" />
-    <param name="ModId" value="0" />
-</node>
-
-<node pkg="thesisDemoEnv" type="thesisDemoEnv_node" name="ENV" output="screen" launch-prefix="xterm -e " required="true" machine="host">
-  <param name="Comm" value="1" />
-  <param name="FriendlyName" value="VirtualEnv" />
-  <param name="ASId" value="3" />
-  <param name="ModId" value="0" />
-  <param name="~ENV_VEH1_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION" />
-  <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
-</node>
-
-<!-- Rover 2 (Follower, Rover) -->
-<!-->
-<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN2" output="screen"  required="true" machine="rover">
-</node> -->
-
-<!-- Rover 3 (Follower, Ntiana) -->
-
-<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN3" output="screen"  required="true" machine="ntiana">
-    <param name="Comm" value="1" />
-    <param name="FriendlyName" value="Ntiana" />
-    <param name="ASId" value="2" />
-    <param name="ModId" value="0" />
-</node>
-
-<node pkg="thesisDemoEnv3" type="thesisDemoEnv3_node" name="ENV3" output="screen" launch-prefix="xterm -e " required="true" machine="host">
-  <param name="Comm" value="1" />
-  <param name="FriendlyName" value="VirtualEnv3" />
-  <param name="ASId" value="5" />
-  <param name="ModId" value="0" />
-  <param name="~ENV_VEH3_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION3" />
-  <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
-</node>
-
-<!--> Rover 4 (Follower, RoverPC2) -->
-
 <node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN2" output="screen"  required="true" machine="roverpc2">
     <param name="Comm" value="1" />
     <param name="FriendlyName" value="OldLeathrum" />
@@ -70,8 +25,6 @@
   <param name="~ENV_VEH2_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION2" />
   <!-- <param name="~ENV_VEH4_LOCATION_OUTPUT" value="TRUTH_ROVER_LOCATION4" /> -->
 </node>
-
-
 <!-- Viz (Host) -->
 <node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true" machine="host">
   <param name="Comm" value="0" />
@@ -83,3 +36,5 @@
 <!--  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> -->
 </node>
 </launch>
+
+

@@ -1,6 +1,6 @@
 <launch>
 
-<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN4" output="screen" required="true">
+<node pkg="thesisDemoFollower" type="thesisDemoFollower_node" name="PLAN2" output="screen" required="true">
     <param name="Comm" value="1" />
     <param name="FriendlyName" value="OldLeathrum" />
     <param name="ASId" value="1" />
