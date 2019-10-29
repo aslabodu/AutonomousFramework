@@ -37,11 +37,11 @@ void PlotApp::Setup(int argc, char** argv)
 	Subscribe(input1, &vehicle_location);		
 	RegisterInputFunction(input1,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation));
 	
-	input2 = FindTopicName("input2");
+	//input2 = FindTopicName("input2");
 	//Subscribe(input2, &vehicle_location2);		
 	//RegisterInputFunction(input2,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation2));
 
-	input3 = FindTopicName("input3");
+	//input3 = FindTopicName("input3");
 	//Subscribe(input3, &vehicle_location3);		
 	//RegisterInputFunction(input3,static_cast<NodeFuncPtr>(&PlotApp::OnReceiveLocation3));
 
@@ -69,7 +69,7 @@ void PlotApp::SetNodeName(int argc, char** argv, std::string& nodeName)
 
 void PlotApp::Init()
 {
-	sleep(3);		// Wait until Qt thread starts
+	sleep(5);		// Wait until Qt thread starts
 
 	if(Load(parameterFile) == false)
     {
@@ -198,7 +198,7 @@ bool PlotApp::LoadEnv(const char* filename)
 			worker.setMaxRange(max_range);
 			worker.setFieldOfView(field_of_view);
 		}
-
+/* 
 		if(elementName=="vehicle2")
 		{
 			pElem->QueryFloatAttribute("MR",&max_range);
@@ -215,7 +215,7 @@ bool PlotApp::LoadEnv(const char* filename)
 
 			worker.setMaxRange(max_range);
 			worker.setFieldOfView(field_of_view);
-		}
+		} */
     }
 
   return(true);	
@@ -228,7 +228,7 @@ void PlotApp::OnReceiveLocation()
 	
 	worker.drawRover(vehicle_location.GetX(), vehicle_location.GetY(), vehicle_location.GetHeading(),1);
 }
-
+/* 
 void PlotApp::OnReceiveLocation2(){
 
 	printf("Received Location 2:  X:%f| Y:%f| Theta:%f \n", vehicle_location2.GetX(), vehicle_location2.GetY(), vehicle_location2.GetHeading());
@@ -249,7 +249,7 @@ void PlotApp::OnReceiveLocation4(){
 	
 	worker.drawRover(vehicle_location4.GetX(), vehicle_location4.GetY(), vehicle_location4.GetHeading(),4);	
 }
-
+*/
 void PlotApp::OnReceiveObstacle()
 {
 	// printf("Received Obstacle:  X:%f| Y:%f\n", obstacle.GetX(), obstacle.GetY());

@@ -30,7 +30,7 @@ void ThesisDemoLeader::Setup(int argc, char** argv)
 
     RegisterInitFunction(static_cast<NodeFuncPtr>(&ThesisDemoLeader::AppInit));
     
-	RegisterCoreFunction(static_cast<NodeFuncPtr>(&ThesisDemoLeader::Process));
+	  RegisterCoreFunction(static_cast<NodeFuncPtr>(&ThesisDemoLeader::Process));
     
     RegisterExitFunction(static_cast<NodeFuncPtr>(&ThesisDemoLeader::OnExit));
 }
@@ -43,11 +43,12 @@ void ThesisDemoLeader::SetNodeName(int argc, char** argv, std::string& nodeName)
 void ThesisDemoLeader::AppInit()
 {
     sleep(3);
+  //  ros::Rate rate(24.);
     _wheels->SetLeftWheel(0);
     _wheels->SetRightWheel(0);
 
     // Set command message to pause state
-    _command->SetCommand(2);
+    //_command->SetCommand(2);
 
     timer = 0; 
 
@@ -58,36 +59,43 @@ void ThesisDemoLeader::Process()
     if (signal (SIGINT, termination_handler) == SIG_IGN)
     	signal (SIGINT, SIG_IGN);	
 
-    _wheels->SetRightWheel(20);
-    _wheels->SetLeftWheel(20);
-   // _command->SetCommand(0);
-    SendMessage("VirtualEnv", _wheels);
+  //  _wheels->SetRightWheel(20);
+  //  _wheels->SetLeftWheel(20);
+ //   SendMessage("VirtualEnv", _wheels);
    // SendMessage("OldLeathrum", _command);
-    /* 
-    if(timer < 100)
+     
+    _command->SetCommand(0);
+    SendMessage("OldLeathrum", _command);
+    bool turn = false; 
+
+    if(timer < 100100)
     {
         // go straight
         _wheels->SetRightWheel(1);
         _wheels->SetLeftWheel(1);
-        std::cout << "set my wheels " << std::endl; 
-        SendMessage("Ntiana", _command);
-        SendMessage("OldLeathrum", _command);
         SendMessage("VirtualEnv", _wheels);
         timer++;
-    }
-    else if(timer >=100 && timer <= 50)
+     }
+    else if(timer < 106146)
     {
-        _command->SetCommand(1);
-        _wheels->SetRightWheel(1);
-        _wheels->SetLeftWheel(1);
-        SendMessage("Ntiana", _command);
-        SendMessage("OldLeathrum", _command);
+        if( turn == false)
+        {
+          turn = true;
+          _command->SetCommand(1);
+          SendMessage("OldLeathrum", _command);
+        }
+        _wheels->SetRightWheel(10);
+        _wheels->SetLeftWheel(-10);
         SendMessage("VirtualEnv", _wheels);
-        if(timer == 50)
-            timer = 0; 
-    }*/
+      timer++; 
+    }
+    else if(timer >= 106145)
+    {
+      timer = 0; 
+      _command->SetCommand(0);
+      SendMessage("OldLeathrum", _command);
+    }
 
-    
 }
 
 void ThesisDemoLeader::OnExit()

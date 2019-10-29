@@ -47,7 +47,7 @@ void Environment::AppInit()
 	//std::cout << "init in environment " << std::endl; 
 	sleep(3);
 
-	srand(time(0));		// set random seed
+	//srand(time(0));		// set random seed
 
 	if(Load(parameterFile) == false)
     {

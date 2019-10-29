@@ -37,7 +37,7 @@ public:
 class PlotApp : public Node
 {
 private:
-	LocationObject vehicle_location,vehicle_location2, vehicle_location3, vehicle_location4;	
+	LocationObject vehicle_location; //,vehicle_location2, vehicle_location3, vehicle_location4;	
 
 	LocationObject obstacle; 
 
@@ -54,9 +54,9 @@ protected:
 	bool Load(const char* filename);
 	bool LoadEnv(const char* filename);
 	void OnReceiveLocation();
-	void OnReceiveLocation2();
-	void OnReceiveLocation3();
-	void OnReceiveLocation4();
+	//void OnReceiveLocation2();
+	//void OnReceiveLocation3();
+	//void OnReceiveLocation4();
 	void OnReceiveObstacle();
 	void Process();
 };

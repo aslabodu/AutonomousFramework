@@ -20,6 +20,7 @@ MainWindow::MainWindow(QWidget* parent):  QMainWindow(parent)
 	arrow_fov1_Rover = new QCPItemLine(&customPlot);
 	arrow_fov2_Rover = new QCPItemLine(&customPlot);
 
+/* 
 	arrow_Rover2 = new QCPItemLine(&customPlot);
 	arrow_fov1_Rover2 = new QCPItemLine(&customPlot);
 	arrow_fov2_Rover2 = new QCPItemLine(&customPlot);
@@ -31,7 +32,7 @@ MainWindow::MainWindow(QWidget* parent):  QMainWindow(parent)
 	arrow_Rover4 = new QCPItemLine(&customPlot);
 	arrow_fov1_Rover4 = new QCPItemLine(&customPlot);
 	arrow_fov2_Rover4 = new QCPItemLine(&customPlot);
-
+*/
 	verticalLayout.addWidget(&customPlot);  
 	centralWidget.setLayout(&verticalLayout);
 	this->setCentralWidget(&centralWidget);  
@@ -61,8 +62,8 @@ void MainWindow::setBounds(qreal _minX, qreal _maxX, qreal _minY, qreal _maxY)
 
 void MainWindow::drawRover(qreal x, qreal y, qreal theta, int RoverID)
 {
-	switch(RoverID){
-		case 1:
+//	switch(RoverID){
+	//	case 1:
 			//printf("Test Test MainWindow Setup 1\n");
 
 			arrow_Rover->start->setCoords(x,y);
@@ -83,7 +84,7 @@ void MainWindow::drawRover(qreal x, qreal y, qreal theta, int RoverID)
 			arrow_fov1_Rover->setHead(QCPLineEnding::esNone);
 
 			arrow_fov2_Rover->setHead(QCPLineEnding::esNone);
-			break;
+	/* 		break;
 		case 2:
 			//printf("Test Test MainWindow Setup 2\n");
 			arrow_Rover2->start->setCoords(x,y);
@@ -148,7 +149,7 @@ void MainWindow::drawRover(qreal x, qreal y, qreal theta, int RoverID)
 			arrow_fov2_Rover4->setHead(QCPLineEnding::esNone);
 			break; 
 		}
-
+*/
 	// // For wheel visualization
 	// customPlot.graph(0)->setData(QVector<double>(),QVector<double>());
 	// customPlot.graph(0)->addData(x + cos((theta-90.0f)*M_PI/180.0f)*5.0f, y + sin((theta-90.0f)*M_PI/180.0f)*5.0f);

@@ -7,15 +7,20 @@
     <param name="ModId" value="0" />
 </node>
 
+
 <!-- Virtual Environment and Viz (Host) -->
-<node pkg="thesisDemoViz" type="thesisDemoViz_node" name="VIZ" output="screen" launch-prefix="xterm -e " required="true">
+<!-->
+<node pkg="demo4_viz" type="demo4_viz_node" name="PLOT_OBJECTS_QT" output="screen" launch-prefix="xterm -e " required="true">
   <param name="Comm" value="0" />
   <param name="ASId" value="3" />
   <param name="ModId" value="1" />
   <param name="~input1" value="TRUTH_ROVER_LOCATION" /> 
-  <param name="~input2" value="TRUTH_ROVER_LOCATION2" />
-  <param name="~input3" value="TRUTH_ROVER_LOCATION3" />
-<!--  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> -->
+  <param name="~input4" value="TRUTH_ROVER_LOCATION4" /> 
+</node>-->
+
+<node type="rviz" name="rviz" pkg="rviz"/>
+
+<node pkg="thesisRviz" type="thesisRviz_node" name="viz" output="screen" launch-prefix="xterm -e " required="true">
 </node>
 
 <node pkg="thesisDemoEnv" type="thesisDemoEnv_node" name="ENV" output="screen" launch-prefix="xterm -e " required="true">

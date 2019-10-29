@@ -42,7 +42,7 @@ private:
   QCPItemLine *arrow_Rover;
   QCPItemLine *arrow_fov1_Rover;
   QCPItemLine *arrow_fov2_Rover;
-  QCPItemLine *arrow_Rover2;
+  /* QCPItemLine *arrow_Rover2;
   QCPItemLine *arrow_fov1_Rover2;
   QCPItemLine *arrow_fov2_Rover2;
   QCPItemLine *arrow_Rover3;
@@ -50,7 +50,7 @@ private:
   QCPItemLine *arrow_fov2_Rover3;
   QCPItemLine *arrow_Rover4;
   QCPItemLine *arrow_fov1_Rover4;
-  QCPItemLine *arrow_fov2_Rover4;
+  QCPItemLine *arrow_fov2_Rover4; */
   qreal max_range;
   qreal field_of_view;
 
