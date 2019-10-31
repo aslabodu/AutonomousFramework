@@ -24,6 +24,8 @@ private:
     int timer;
     WheelsMessage * _wheels;
     CommandMessage * _command; 
+    int _prevL;
+    int _prevR; 
 };
 
 #endif

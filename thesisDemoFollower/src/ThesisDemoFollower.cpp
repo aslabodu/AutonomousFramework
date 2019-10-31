@@ -47,6 +47,9 @@ void ThesisDemoFollower::AppInit()
     _wheels->SetLeftWheel(0);
     _wheels->SetRightWheel(0);
 
+    _prevL = 0;
+    _prevR = 0; 
+
     timer = 0; 
 
 }
@@ -64,26 +67,41 @@ void ThesisDemoFollower::Process()
             
             if(_command->GetCommand() == 0)
             {
+                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 0 << std::endl; 
                 _wheels->SetRightWheel(1);
                 _wheels->SetLeftWheel(1);
                 SendMessage("VirtualEnv", _wheels);
+                SendMessage("Ntiana", _command);
+                _prevL = 1;
+                _prevR = 1;
             }
             else if(_command->GetCommand() == 1)
             {
-                _wheels->SetRightWheel(1);
-                _wheels->SetLeftWheel(1);
+                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 1 << std::endl; 
+                _wheels->SetRightWheel(10);
+                _wheels->SetLeftWheel(-10);
                 SendMessage("VirtualEnv", _wheels);
+                SendMessage("Ntiana", _command);
+                _prevL = 10;
+                _prevR = -10;
             }
             else if(_command->GetCommand() == 2)
             {
+                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 2 << std::endl; 
                 _wheels->SetLeftWheel(0);
                 _wheels->SetRightWheel(0);
                 SendMessage("VirtualEnv", _wheels);
+                SendMessage("Ntiana", _command);
+                _prevL = 0;
+                _prevR = 0;
             }
+            delete _command; 
         }
     }
     else
     {
+        _wheels->SetRightWheel(_prevR);
+        _wheels->SetLeftWheel(_prevL);
         SendMessage("VirtualEnv", _wheels);
     }
 }
