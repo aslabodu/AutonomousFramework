@@ -5,6 +5,9 @@
 #include "Clock.h"
 #include "DetectedObject.h"
 #include "Line.h"
+#include <chrono>
+#include <ctime>
+#include <boost/date_time.hpp>
 
 class Vehicle
 {
@@ -78,7 +81,8 @@ public:
 		_y = _y + deltaTime/6.0f*(k01+2*(k11+k21)+k31);
 		_theta = (thetaRadians + deltaTime/6.0f*(k02+2*(k12+k22)+k32))*(180.0/M_PI);
 
-		//printf("x=%f | y=%f | theta=%f | Dt=%f\n",_x, _y, _theta,deltaTime);
+		printf("x=%f | y=%f | theta=%f | Dt=%f at Time:%s",_x, _y, _theta,deltaTime,
+		boost::posix_time::second_clock::local_time().time_of_day());
 		ResetClock();
 	}
 

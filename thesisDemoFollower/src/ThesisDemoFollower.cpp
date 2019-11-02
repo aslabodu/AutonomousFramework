@@ -1,4 +1,7 @@
 #include "ThesisDemoFollower.h"
+#include <chrono>
+#include <ctime>
+#include <boost/date_time.hpp>
 
 // ------------------------------------------
 // IMPORTANT!! - Make sure there is a definition for CreateApplicationNode()
@@ -67,7 +70,8 @@ void ThesisDemoFollower::Process()
             
             if(_command->GetCommand() == 0)
             {
-                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 0 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 0 << "at: " 
+                << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
                 _wheels->SetRightWheel(1);
                 _wheels->SetLeftWheel(1);
                 SendMessage("VirtualEnv2", _wheels);
@@ -77,7 +81,8 @@ void ThesisDemoFollower::Process()
             }
             else if(_command->GetCommand() == 1)
             {
-                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 1 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 1 << "at: " 
+                << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
                 _wheels->SetRightWheel(10);
                 _wheels->SetLeftWheel(-10);
                 SendMessage("VirtualEnv2", _wheels);
@@ -87,7 +92,8 @@ void ThesisDemoFollower::Process()
             }
             else if(_command->GetCommand() == 2)
             {
-                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 2 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 2 << "at: " 
+                << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
                 _wheels->SetLeftWheel(0);
                 _wheels->SetRightWheel(0);
                 SendMessage("VirtualEnv2", _wheels);
