@@ -128,8 +128,11 @@ void Node::Init(int argc, char** argv)
 	ros::param::get("/" +_nodeName + "/Comm", communication);
 	ros::param::get("/" +_nodeName + "/FriendlyName", friendlyName);
 
+	std::cout << _nodeName << " before comm is one " << communication << " " << friendlyName << std::endl; 
+
 	if(communication == 1)
 	{
+		std::cout << "communication was 1 " << std::endl; 
 		ros::param::get("/" +_nodeName + "/ASId", _ASId);
 		ros::param::get("/" +_nodeName + "/ModId", _moduleId);
 		if(Comm::GetInstance()->checkCommInstance() == false)

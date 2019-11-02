@@ -44,6 +44,7 @@ public:
 		theta = _theta;
 	}
 	inline void UpdateLocation(int leftWheelTick, int rightWheelTick){
+
 		deltaTime = ElapsedTime();
 		float vL = ((leftWheelTick - LTL)/deltaTime)*M_PI/180.0f;
 		float vR = ((rightWheelTick - LTR)/deltaTime)*M_PI/180.0f;

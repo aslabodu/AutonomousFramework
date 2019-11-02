@@ -39,7 +39,7 @@ void ThesisDemoFollower::Setup(int argc, char** argv)
 
 void ThesisDemoFollower::SetNodeName(int argc, char** argv, std::string& nodeName)
 {
-	nodeName = "Planner";
+	nodeName = "PLAN2";
 }
 
 void ThesisDemoFollower::AppInit()
@@ -56,8 +56,8 @@ void ThesisDemoFollower::AppInit()
 
 void ThesisDemoFollower::Process()
 {
-    //if (signal (SIGINT, termination_handler) == SIG_IGN)
-   // 	signal (SIGINT, SIG_IGN);	
+    if (signal (SIGINT, termination_handler) == SIG_IGN)
+    	signal (SIGINT, SIG_IGN);	
 
     if(CheckForMessage(0) == true)
     {
@@ -67,31 +67,31 @@ void ThesisDemoFollower::Process()
             
             if(_command->GetCommand() == 0)
             {
-                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 0 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 0 << std::endl; 
                 _wheels->SetRightWheel(1);
                 _wheels->SetLeftWheel(1);
-                SendMessage("VirtualEnv", _wheels);
-                SendMessage("Ntiana", _command);
+                SendMessage("VirtualEnv2", _wheels);
+               // SendMessage("Ntiana", _command);
                 _prevL = 1;
                 _prevR = 1;
             }
             else if(_command->GetCommand() == 1)
             {
-                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 1 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 1 << std::endl; 
                 _wheels->SetRightWheel(10);
                 _wheels->SetLeftWheel(-10);
-                SendMessage("VirtualEnv", _wheels);
-                SendMessage("Ntiana", _command);
+                SendMessage("VirtualEnv2", _wheels);
+              //  SendMessage("Ntiana", _command);
                 _prevL = 10;
                 _prevR = -10;
             }
             else if(_command->GetCommand() == 2)
             {
-                //std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 2 << std::endl; 
+                std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE" << 2 << std::endl; 
                 _wheels->SetLeftWheel(0);
                 _wheels->SetRightWheel(0);
-                SendMessage("VirtualEnv", _wheels);
-                SendMessage("Ntiana", _command);
+                SendMessage("VirtualEnv2", _wheels);
+                //SendMessage("Ntiana", _command);
                 _prevL = 0;
                 _prevR = 0;
             }
@@ -102,7 +102,7 @@ void ThesisDemoFollower::Process()
     {
         _wheels->SetRightWheel(_prevR);
         _wheels->SetLeftWheel(_prevL);
-        SendMessage("VirtualEnv", _wheels);
+        SendMessage("VirtualEnv2", _wheels);
     }
 }
 
