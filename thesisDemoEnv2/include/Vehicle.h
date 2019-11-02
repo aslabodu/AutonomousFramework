@@ -6,6 +6,7 @@
 #include "DetectedObject.h"
 #include "Line.h"
 #include <boost/date_time.hpp>
+#include <fstream>
 
 class Vehicle
 {
@@ -15,6 +16,7 @@ private:
 	float _field_of_view, _max_range;
 	double deltaTime;
 	float LTL, LTR; // last tick left, last tick right 
+	std::ofstream outfile;
 
 public:
 	Vehicle(float halfWidth = 0.0f, float leftWheelConstant = 0.0f, float rightWheelConstant = 0.0f, float field_of_view = 0.0f, float max_range = FLT_MAX,
@@ -33,6 +35,7 @@ public:
 		LTR = 0;
 		_max_range = max_range;
 		_field_of_view = field_of_view;
+		outfile.open("ENV2.txt");
 	}
 	inline void SetLocation(float x, float y, float theta){
 		_x = x;
@@ -80,8 +83,10 @@ public:
 		_y = _y + deltaTime/6.0f*(k01+2*(k11+k21)+k31);
 		_theta = (thetaRadians + deltaTime/6.0f*(k02+2*(k12+k22)+k32))*(180.0/M_PI);
 
-		printf("x=%f | y=%f | theta=%f | Dt=%f at Time:%s \n",_x, _y, _theta,deltaTime,
-		boost::posix_time::second_clock::local_time().time_of_day());
+		printf("x=%f | y=%f | theta=%f | Dt=%f",_x, _y, _theta,deltaTime);
+		std::cout << " at time: " << boost::posix_time::second_clock::local_time().time_of_day() << std::endl;
+		outfile << boost::posix_time::second_clock::local_time().time_of_day() << " "<< _x << " " << _y << " " << 
+		_theta << " " << _theta << " " << deltaTime <<  std::endl; 
 		ResetClock();
 	}
 

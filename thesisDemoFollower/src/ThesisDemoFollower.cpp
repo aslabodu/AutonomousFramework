@@ -28,6 +28,8 @@ void ThesisDemoFollower::Setup(int argc, char** argv)
     _command = new CommandMessage(); 
     _wheels = new WheelsMessage(); 
 
+    outfile.open("Charlie.txt");
+
     // Set function pointer to messages // 
 
     //Publish(output1, &_wheels);
@@ -72,6 +74,7 @@ void ThesisDemoFollower::Process()
             {
                 std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 0 << "at: " 
                 << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
+                outfile << boost::posix_time::second_clock::local_time().time_of_day() << " Command 0 received " << std::endl;
                 _wheels->SetRightWheel(1);
                 _wheels->SetLeftWheel(1);
                 SendMessage("VirtualEnv2", _wheels);
@@ -83,6 +86,7 @@ void ThesisDemoFollower::Process()
             {
                 std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 1 << "at: " 
                 << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
+                outfile << boost::posix_time::second_clock::local_time().time_of_day() << " Command 1 received " << std::endl;
                 _wheels->SetRightWheel(10);
                 _wheels->SetLeftWheel(-10);
                 SendMessage("VirtualEnv2", _wheels);
@@ -94,6 +98,7 @@ void ThesisDemoFollower::Process()
             {
                 std::cout << "CHARLIE RECEIVED A COMMAND MESSAGE: " << 2 << "at: " 
                 << boost::posix_time::second_clock::local_time().time_of_day()<< std::endl; 
+                outfile << boost::posix_time::second_clock::local_time().time_of_day() << " Command 2 received " << std::endl;
                 _wheels->SetLeftWheel(0);
                 _wheels->SetRightWheel(0);
                 SendMessage("VirtualEnv2", _wheels);
@@ -114,5 +119,5 @@ void ThesisDemoFollower::Process()
 
 void ThesisDemoFollower::OnExit()
 {
-
+    outfile.close();
 }

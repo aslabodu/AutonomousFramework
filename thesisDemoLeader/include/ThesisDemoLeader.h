@@ -5,6 +5,8 @@
 #include "CommandMessage.h"
 #include "WheelsMessage.h"
 #include <signal.h>
+#include <fstream>
+#include <boost/date_time.hpp>
 
 Message * getCorrectMsg(int typeId);
 
@@ -21,6 +23,7 @@ private:
     void AppInit();
     void OnExit();
 
+    std::ofstream outfile; 
     int timer;
     WheelsMessage * _wheels;
     CommandMessage * _command; 

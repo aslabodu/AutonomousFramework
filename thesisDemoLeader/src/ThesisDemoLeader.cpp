@@ -27,6 +27,8 @@ void ThesisDemoLeader::Setup(int argc, char** argv)
     _command = new CommandMessage(); 
     _wheels = new WheelsMessage(); 
 
+    outfile.open("Leader.txt");
+
     //Publish(output1, &_wheels);
     //Publish(output2, &_command);
 
@@ -67,6 +69,8 @@ void ThesisDemoLeader::Process()
     {
         _command->SetCommand(0);
         SendMessage("OldLeathrum", _command);
+        outfile << boost::posix_time::second_clock::local_time().time_of_day() << " " 
+        << "Leader sent a Command 0" <<  std::endl; 
         // Send wheel values ot environment
         _wheels->SetRightWheel(1);
         _wheels->SetLeftWheel(1);
@@ -91,6 +95,8 @@ void ThesisDemoLeader::Process()
           {
             turn = true;
             _command->SetCommand(1);
+            outfile << boost::posix_time::second_clock::local_time().time_of_day() << " " 
+            << "Leader sent a Command 1" <<  std::endl; 
             SendMessage("OldLeathrum", _command);
           }
           _wheels->SetRightWheel(10);
@@ -104,6 +110,8 @@ void ThesisDemoLeader::Process()
           {
             turn = false;
             _command->SetCommand(0);
+            outfile << boost::posix_time::second_clock::local_time().time_of_day() << " " 
+            << "Leader sent a Command 0" <<  std::endl; 
             SendMessage("OldLeathrum", _command);
           }
 
@@ -118,6 +126,8 @@ void ThesisDemoLeader::Process()
           {
             turn = true;
             _command->SetCommand(1);
+            outfile << boost::posix_time::second_clock::local_time().time_of_day() << " " 
+            << "Leader sent a Command 1" <<  std::endl; 
             SendMessage("OldLeathrum", _command);
           }
           _wheels->SetRightWheel(10);

@@ -8,6 +8,7 @@
 #include <chrono>
 #include <ctime>
 #include <boost/date_time.hpp>
+#include <fstream>
 
 class Vehicle
 {
@@ -17,6 +18,7 @@ private:
 	float _field_of_view, _max_range;
 	double deltaTime;
 	float LTL, LTR; // last tick left, last tick right 
+	std::ofstream outfile;
 
 public:
 	Vehicle(float halfWidth = 0.0f, float leftWheelConstant = 0.0f, float rightWheelConstant = 0.0f, float field_of_view = 0.0f, float max_range = FLT_MAX,
@@ -35,6 +37,8 @@ public:
 		LTR = 0;
 		_max_range = max_range;
 		_field_of_view = field_of_view;
+		outfile.open("ENV1.txt");
+
 	}
 	inline void SetLocation(float x, float y, float theta){
 		_x = x;
@@ -83,6 +87,8 @@ public:
 
 		printf("x=%f | y=%f | theta=%f | Dt=%f at Time:%s",_x, _y, _theta,deltaTime,
 		boost::posix_time::second_clock::local_time().time_of_day());
+		outfile << boost::posix_time::second_clock::local_time().time_of_day() << " "<< _x << " " << _y << " " << 
+		_theta << " " << _theta << " " << deltaTime <<  std::endl; 
 		ResetClock();
 	}
 
