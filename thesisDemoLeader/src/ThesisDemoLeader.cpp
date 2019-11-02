@@ -60,69 +60,74 @@ void ThesisDemoLeader::Process()
 {
     if (signal (SIGINT, termination_handler) == SIG_IGN)
     	signal (SIGINT, SIG_IGN);	
-
-  // Send go straight command // 
-    _command->SetCommand(0);
-    SendMessage("OldLeathrum", _command);
-
-  // Send wheel values ot environment
-    _wheels->SetRightWheel(1);
-    _wheels->SetLeftWheel(1);
-    SendMessage("VirtualEnv", _wheels);
-     
-    bool turn = false; 
-
-    if(timer < 100100)
+  
+    bool turn; 
+    // Send go straight command // 
+    if(timer == 0)
     {
-        // go straight
+        _command->SetCommand(0);
+        SendMessage("OldLeathrum", _command);
+        // Send wheel values ot environment
         _wheels->SetRightWheel(1);
         _wheels->SetLeftWheel(1);
         SendMessage("VirtualEnv", _wheels);
-        timer++;
-     }
-    else if( timer >= 100100 && timer < 106146)
-    {
-        if( turn == false)
-        {
-          turn = true;
-          _command->SetCommand(1);
-          SendMessage("OldLeathrum", _command);
-        }
-        _wheels->SetRightWheel(10);
-        _wheels->SetLeftWheel(-10);
-        SendMessage("VirtualEnv", _wheels);
-        timer++; 
-    }
-    else if(timer >= 106145 && timer < 117145)
-    {
-        if(turn == true)
-        {
-          turn = false;
-          _command->SetCommand(0);
-          SendMessage("OldLeathrum", _command);
-        }
-
-        _wheels->SetRightWheel(1);
-        _wheels->SetLeftWheel(1);
-        SendMessage("VirtualEnv", _wheels);
-        timer++;
-    }
-    else if(timer >= 117145 && timer < 123145)
-    {
-        if(turn == false)
-        {
-          turn = true;
-          _command->SetCommand(1);
-          SendMessage("OldLeathrum", _command);
-        }
-        _wheels->SetRightWheel(10);
-        _wheels->SetLeftWheel(-10);
-        SendMessage("VirtualEnv", _wheels);
-        timer++; 
         
-        if(timer == 123145)
-          timer=0; 
+        turn = false; 
     }
+
+    
+
+      if(timer < 100100)
+      {
+          // go straight
+          _wheels->SetRightWheel(1);
+          _wheels->SetLeftWheel(1);
+          SendMessage("VirtualEnv", _wheels);
+          timer++;
+      }
+      else if( timer >= 100100 && timer < 106146)
+      {
+          if( turn == false)
+          {
+            turn = true;
+            _command->SetCommand(1);
+            SendMessage("OldLeathrum", _command);
+          }
+          _wheels->SetRightWheel(10);
+          _wheels->SetLeftWheel(-10);
+          SendMessage("VirtualEnv", _wheels);
+          timer++; 
+      }
+      else if(timer >= 106145 && timer < 117145)
+      {
+          if(turn == true)
+          {
+            turn = false;
+            _command->SetCommand(0);
+            SendMessage("OldLeathrum", _command);
+          }
+
+          _wheels->SetRightWheel(1);
+          _wheels->SetLeftWheel(1);
+          SendMessage("VirtualEnv", _wheels);
+          timer++;
+      }
+      else if(timer >= 117145 && timer < 123145)
+      {
+          if(turn == false)
+          {
+            turn = true;
+            _command->SetCommand(1);
+            SendMessage("OldLeathrum", _command);
+          }
+          _wheels->SetRightWheel(10);
+          _wheels->SetLeftWheel(-10);
+          SendMessage("VirtualEnv", _wheels);
+          timer++; 
+          
+          if(timer == 123145)
+            timer=0; 
+      }
 
 }
 
